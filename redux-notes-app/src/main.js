@@ -3,12 +3,6 @@ import { addNote, removeNote } from './actions/actions';
 
 // We use store.getState() to get our app state from the store
 
-// console.log('Before:', store.getState());
-// store.dispatch(addNote('One', 'One content'));
-// store.dispatch(addNote('Two', 'Two content'));
-// store.dispatch(addNote('Three', 'Three content'));
-// console.log('After:', store.getState());
-
 // ------ HTML references ------
 let notesUList = document.getElementById('notes');
 let addNoteForm = document.getElementById('add-note');
@@ -22,6 +16,7 @@ function deleteNote(index) {
 
 function renderNotes() {
   let notes = store.getState().notes;
+  // console.log(notes)
 
   notesUList.innerHTML = '';
   notes.map((note, index) => {
@@ -38,8 +33,6 @@ function renderNotes() {
 
   setDeleteNoteButtonsEventListeners();
 }
-
-
 
 // ------ Event Listeners ------
 addNoteForm.addEventListener('submit', (e) => {
@@ -63,6 +56,9 @@ function setDeleteNoteButtonsEventListeners() {
 }
 
 // ------ Render the initial Notes ------
+
+renderNotes();
+
 store.subscribe(() => {
   renderNotes();
 });
